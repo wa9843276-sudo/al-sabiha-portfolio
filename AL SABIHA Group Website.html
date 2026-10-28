@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>AL SABIHA Group of Companies | Engineering & Technical Services UAE</title>
+ <meta name="description" content="AL SABIHA Group of Companies provides electromechanical works, industrial contracting, technical maintenance and cleaning services across the UAE.">
+ <meta name="keywords" content="AL SABIHA Group of Companies, electromechanical works UAE, industrial contracting UAE, technical services UAE, mechanical maintenance UAE, cleaning services Ajman, engineering services UAE, Hamriyah Free Zone Sharjah">
+ 
+<!-- Fonts & Icons -->
+ <link rel="preconnect" href="https://fonts.googleapis.com">
+ <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+ <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" crossorigin="anonymous"></script>
+ 
+<!-- Tailwind CSS CDN -->
+ <script src="https://cdn.tailwindcss.com"></script>
+ <script>
+ tailwind.config = {
+ darkMode: 'class',
+ theme: {
+ extend: {
+ colors: {
+ obsidian: '#080c14',
+ glassDark: 'rgba(15, 22, 36, 0.72)',
+ glassBorder: 'rgba(240, 220, 165, 0.32)',
+ gold: {
+ DEFAULT: '#F0DCA5',
+ light: '#FFF2D1',
+ dark: '#C5A047'
+ },
+ skymint: '#B8F7E4',
+ softlilac: '#E8DEFF',
+ platinum: '#D9E2EC',
+ slatuted: '#94A3B8'
+ },
+ fontFamily: {
+ sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+ display: ['"Space Grotesk"', 'sans-serif']
+ },
+ boxShadow: {
+ 'glass-gold': '0 10px 35px -5px rgba(240, 220, 165, 0.25)',
+ 'glass-mint': '0 10px 35px -5px rgba(184, 247, 228, 0.25)',
+ 'glow-gold': '0 0 30px rgba(240, 220, 165, 0.5)',
+ 'glow-mint': '0 0 30px rgba(184, 247, 228, 0.5)',
+ }
+ }
+ }
+ }
+ </script>
+ 
+<!-- Three.js for Global 3D Background -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+ 
+<style>
+ /* Custom Lighter & Vibrant Glassmorphism Styles */
+ body {
+ background-color: #080c14;
+ color: #F7F8FA;
+ font-family: 'Plus Jakarta Sans', sans-serif;
+ overflow-x: hidden;
+ }
+
+ /* Persistent Fullscreen 3D Canvas Background Behind Everything */
+ #global3DCanvas {
+ position: fixed;
+ top: 0;
+ left: 0;
+ width: 100vw;
+ height: 100vh;
+ z-index: 0;
+ pointer-events: none;
+ }
+
+ .glass-panel {
+ background: rgba(16, 24, 40, 0.68);
+ backdrop-filter: blur(24px);
+ -webkit-backdrop-filter: blur(24px);
+ border: 1px solid rgba(240, 220, 165, 0.28);
+ box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+ }
+
+ .glass-panel-hover {
+ transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+ }
+ .glass-panel-hover:hover {
+ border-color: rgba(240, 220, 165, 0.6);
+ transform: translateY(-6px) scale(1.01);
+ box-shadow: 0 20px 45px rgba(240, 220, 165, 0.22);
+ }
+
+ .gold-gradient-text {
+ background: linear-gradient(135deg, #FFF2D1 0%, #F0DCA5 50%, #C8A342 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ }
+
+ .mint-gradient-text {
+ background: linear-gradient(135deg, #FFFFFF 0%, #B8F7E4 100%);
+ -webkit-background-clip: text;
+ -webkit-text-fill-color: transparent;
+ }
+
+ /* Live 3D Tech Icons */
+ .tech-3d-icon-box {
+ position: relative;
+ transform-style: preserve-3d;
+ perspective: 800px;
+ transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+ }
+ .tech-3d-icon-box:hover {
+ transform: rotateY(18deg) rotateX(-12deg) scale(1.12);
+ }
+
+ .tech-ring-spin {
+ animation: ringSpin 10s linear infinite;
+ transform-origin: center;
+ }
+ .tech-ring-reverse {
+ animation: ringSpin 7s linear infinite reverse;
+ transform-origin: center;
+ }
+ .tech-node-pulse {
+ animation: nodePulse 1.8s ease-in-out infinite alternate;
+ }
+ .tech-laser-scan {
+ animation: laserScan 2.5s ease-in-out infinite alternate;
+ }
+
+ @keyframes ringSpin {
+ from { transform: rotate(0deg); }
+ to { transform: rotate(360deg); }
+ }
+ @keyframes nodePulse {
+ 0% { opacity: 0.3; transform: scale(0.85); }
+ 100% { opacity: 1; transform: scale(1.3); filter: drop-shadow(0 0 10px currentColor); }
+ }
+ @keyframes laserScan {
+ 0% { transform: translateY(-12px); opacity: 0.2; }
+ 50% { opacity: 0.9; }
+ 100% { transform: translateY(12px); opacity: 0.2; }
+ }
+
+ /* Custom Scrollbar */
+ ::-webkit-scrollbar {
+ width: 8px;
+ }
+ ::-webkit-scrollbar-track {
+ background: #080c14;
+ }
+ ::-webkit-scrollbar-thumb {
+ background: #1e293b;
+ border-radius: 4px;
+ border: 1px solid rgba(240, 220, 165, 0.3);
+ }
+ ::-webkit-scrollbar-thumb:hover {
+ background: #F0DCA5;
+ }
+ </style>
+</head>
+<body class="antialiased selection:bg-gold selection:text-obsidian relative">
+
+ <!-- GLOBAL PERSISTENT 3D BACKGROUND CANVAS (Runs Across ALL Pages & Sections) -->
+ <div id="global3DCanvas"></div>
+
+ <!-- NAVIGATION HEADER -->
+ <header class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" id="mainHeader">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+ <nav class="glass-panel rounded-2xl px-5 py-3 flex items-center justify-between transition-all border border-gold/40 shadow-glass-gold">
+ <!-- LOGO SECTION WITH 3D TECH ICON MONOGRAM -->
+ <a href="#home" class="flex items-center gap-3 group">
+ <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-gold/30 via-obsidian to-skymint/20 border border-gold/60 flex items-center justify-center shadow-glass-gold group-hover:scale-110 transition-transform tech-3d-icon-box">
+ <svg class="w-7 h-7" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+ <circle cx="50" cy="50" r="42" stroke="#F0DCA5" stroke-width="2" stroke-dasharray="8 4" class="tech-ring-spin"/>
+ <path d="M25 75 L50 25 L75 75 L60 75 L50 50 L40 75 Z" fill="url(#hdrGrad)"/>
+ <circle cx="50" cy="25" r="4" fill="#B8F7E4" class="tech-node-pulse"/>
+ <circle cx="25" cy="75" r="4" fill="#E8DEFF" class="tech-node-pulse"/>
+ <circle cx="75" cy="75" r="4" fill="#F0DCA5" class="tech-node-pulse"/>
+ <defs>
+ <linearGradient id="hdrGrad" x1="25" y1="25" x2="75" y2="75" gradientUnits="userSpaceOnUse">
+ <stop offset="0%" stop-color="#FFF2D1"/>
+ <stop offset="50%" stop-color="#F0DCA5"/>
+ <stop offset="100%" stop-color="#B89B4A"/>
+ </linearGradient>
+ </defs>
+ </svg>
+ </div>
+ <div class="flex flex-col">
+ <span class="font-display font-bold text-lg tracking-wider text-white group-hover:text-gold transition-colors">AL SABIHA</span>
+ <span class="text-[9px] tracking-widest text-gold font-mono -mt-1">GROUP OF COMPANIES</span>
+ </div>
+ </a>
+
+ <!-- DESKTOP NAV -->
+ <div class="hidden lg:flex items-center space-x-6 text-sm font-medium">
+ <a href="#home" class="nav-link hover:text-gold transition-colors text-white/90">Home</a>
+ <a href="#about" class="nav-link hover:text-gold transition-colors text-white/70">About</a>
+ <a href="#companies" class="nav-link hover:text-gold transition-colors text-white/70">Companies</a>
+ <a href="#services" class="nav-link hover:text-gold transition-colors text-white/70">Services</a>
+ <a href="#projects" class="nav-link hover:text-gold transition-colors text-white/70">Projects</a>
+ <a href="#industries" class="nav-link hover:text-gold transition-colors text-white/70">Industries</a>
+ <a href="#qhse" class="nav-link hover:text-gold transition-colors text-white/70">QHSE</a>
+ <a href="#whyus" class="nav-link hover:text-gold transition-colors text-white/70">Why Us</a>
+ </div>
+
+ <!-- CTA & MOBILE TOGGLE -->
+ <div class="flex items-center gap-3">
+ <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold bg-gradient-to-r from-gold/20 via-gold to-gold/90 text-obsidian hover:shadow-glow-gold hover:scale-105 transition-all duration-300">
+ <i class="fa-solid fa-paper-plane text-xs"></i>
+ <span>Contact Us</span>
+ </a>
+ <button id="mobileMenuBtn" class="lg:hidden w-10 h-10 rounded-xl glass-panel flex items-center justify-center text-gold border border-gold/30 focus:outline-none">
+ <i class="fa-solid fa-bars text-lg" id="menuIcon"></i>
+ </button>
+ </div>
+ </nav>
+ </div>
+
+ <!-- MOBILE NAV MENU -->
+ <div id="mobileMenu" class="hidden lg:hidden px-4 pb-4 max-w-7xl mx-auto">
+ <div class="glass-panel rounded-2xl p-5 flex flex-col space-y-3 border border-gold/30">
+ <a href="#home" class="mobile-link text-white hover:text-gold py-2 border-b border-white/5">Home</a>
+ <a href="#about" class="mobile-link text-white/80 hover:text-gold py-2 border-b border-white/5">About Us</a>
+ <a href="#companies" class="mobile-link text-white/80 hover:text-gold py-2 border-b border-white/5">Group Companies</a>
+ <a href="#services" class="mobile-link text-white/80 hover:text-gold py-2 border-b border-white/5">Services</a>
+ <a href="#projects" class="mobile-link text-white/80 hover:text-gold py-2 border-b border-white/5">Projects</a>
+ <a href="#industries" class="mobile-link text-white/80 hover:text-gold py-2 border-b border-white/5">Industries</a>
+ <a href="#qhse" class="mobile-link text-white/80 hover:text-gold py-2 border-b border-white/5">QHSE & ISO</a>
+ <a href="#whyus" class="mobile-link text-white/80 hover:text-gold py-2 border-b border-white/5">Why Choose Us</a>
+ <a href="#contact" class="mobile-link text-gold font-semibold py-2 flex items-center gap-2">
+ <i class="fa-solid fa-envelope"></i> Contact Us Now
+ </a>
+ </div>
+ </div>
+ </header>
+
+ <!-- HERO SECTION -->
+ <section id="home" class="relative min-h-screen flex items-center justify-center pt-28 pb-16 z-10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+ <!-- Badge -->
+ <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-panel border border-gold/40 text-xs font-mono text-gold mb-6 shadow-glass-gold animate-pulse">
+ <span class="w-2 h-2 rounded-full bg-skymint animate-ping"></span>
+ <span>ISO 14001:2015 Certified | Est. 2019 • UAE</span>
+ </div>
+
+ <!-- Headline -->
+ <h1 class="font-display text-4xl sm:text-6xl md:text-7xl font-extrabold text-white tracking-tight leading-none mb-6">
+ AL SABIHA GROUP <br>
+ <span class="gold-gradient-text">OF COMPANIES</span>
+ </h1>
+
+ <!-- Tagline -->
+ <p class="text-lg sm:text-2xl font-mono text-skymint mb-4 font-light tracking-widest uppercase">
+ Right People. Right Place. Right Time.
+ </p>
+
+ <p class="max-w-3xl mx-auto text-sm sm:text-base text-slatuted mb-10 leading-relaxed font-normal">
+ Engineering Excellence. Reliable Solutions. Lasting Partnerships. Delivering specialized electromechanical, industrial contracting, mechanical maintenance, and technical cleaning solutions for industrial, commercial, and infrastructure environments across the United Arab Emirates.
+ </p>
+
+ <!-- CTA Buttons -->
+ <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+ <a href="#services" class="w-full sm:w-auto px-8 py-4 rounded-xl bg-gradient-to-r from-gold via-gold/90 to-gold/70 text-obsidian font-bold text-sm tracking-wide shadow-glow-gold hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3">
+ <span>Explore Our Services</span>
+ <i class="fa-solid fa-arrow-right"></i>
+ </a>
+ <a href="#projects" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel border border-gold/40 hover:border-gold text-white font-semibold text-sm hover:bg-gold/10 transition-all duration-300 flex items-center justify-center gap-3">
+ <i class="fa-solid fa-briefcase text-gold"></i>
+ <span>View Our Projects</span>
+ </a>
+ <a href="#contact" class="w-full sm:w-auto px-8 py-4 rounded-xl glass-panel border border-skymint/40 hover:border-skymint text-skymint font-semibold text-sm hover:bg-skymint/10 transition-all duration-300 flex items-center justify-center gap-3">
+ <i class="fa-solid fa-headset"></i>
+ <span>Contact Team</span>
+ </a>
+ </div>
+
+ <!-- Quick Metrics Grid -->
+ <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+ <div class="glass-panel p-4 rounded-xl border border-white/10">
+ <div class="font-display text-2xl font-bold text-gold">7</div>
+ <div class="text-xs text-slatuted">Specialized Entities</div>
+ </div>
+ <div class="glass-panel p-4 rounded-xl border border-white/10">
+ <div class="font-display text-2xl font-bold text-skymint">18+</div>
+ <div class="text-xs text-slatuted">Major Client Projects</div>
+ </div>
+ <div class="glass-panel p-4 rounded-xl border border-white/10">
+ <div class="font-display text-2xl font-bold text-softlilac">HFZ & DED</div>
+ <div class="text-xs text-slatuted">Licensed Authorities</div>
+ </div>
+ <div class="glass-panel p-4 rounded-xl border border-white/10">
+ <div class="font-display text-2xl font-bold text-white">100%</div>
+ <div class="text-xs text-slatuted">Quality Commitment</div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- ABOUT US SECTION -->
+ <section id="about" class="py-24 relative z-10 border-t border-white/10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="text-center max-w-3xl mx-auto mb-16">
+ <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">Corporate Profile</span>
+ <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-6">Building Trust Through Quality & Performance</h2>
+ <div class="w-20 h-1 bg-gradient-to-r from-gold to-skymint mx-auto rounded-full mb-6"></div>
+ <p class="text-slatuted text-base leading-relaxed">
+ Established in 2019 in the UAE business environment, AL SABIHA Group of Companies brings together seven specialized entities to deliver comprehensive engineering, electromechanical, contracting, maintenance, and industrial support solutions.
+ </p>
+ </div>
+
+ <!-- Vision, Mission, Values Grid -->
+ <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+ <!-- Vision -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover flex flex-col justify-between">
+ <div>
+ <div class="w-16 h-16 rounded-2xl bg-gold/15 border border-gold/40 flex items-center justify-center text-gold mb-6 shadow-glass-gold tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <circle cx="50" cy="50" r="40" stroke="#F0DCA5" stroke-width="2" stroke-dasharray="10 5" class="tech-ring-spin"/>
+ <circle cx="50" cy="50" r="22" stroke="#B8F7E4" stroke-width="2.5"/>
+ <circle cx="50" cy="50" r="8" fill="#F0DCA5" class="tech-node-pulse"/>
+ <line x1="10" y1="50" x2="90" y2="50" stroke="#E8DEFF" stroke-width="1.5" opacity="0.6"/>
+ <line x1="50" y1="10" x2="50" y2="90" stroke="#E8DEFF" stroke-width="1.5" opacity="0.6"/>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-4">Our Vision</h3>
+ <p class="text-slatuted text-sm leading-relaxed">
+ To become a recognized and dependable group of companies in the UAE and the wider Gulf region by delivering quality services, building long-term relationships, and continuously improving our capabilities.
+ </p>
+ </div>
+ </div>
+
+ <!-- Mission -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover flex flex-col justify-between">
+ <div>
+ <div class="w-16 h-16 rounded-2xl bg-skymint/15 border border-skymint/40 flex items-center justify-center text-skymint mb-6 shadow-glass-mint tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <polygon points="50,10 90,50 50,90 10,50" stroke="#B8F7E4" stroke-width="2" stroke-dasharray="6 4" class="tech-ring-reverse"/>
+ <circle cx="50" cy="50" r="16" fill="url(#missGrad)"/>
+ <circle cx="50" cy="50" r="6" fill="#080c14"/>
+ <defs>
+ <linearGradient id="missGrad" x1="0" y1="0" x2="1" y2="1">
+ <stop offset="0%" stop-color="#B8F7E4"/>
+ <stop offset="100%" stop-color="#F0DCA5"/>
+ </linearGradient>
+ </defs>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-4">Our Mission</h3>
+ <ul class="text-slatuted text-sm leading-relaxed space-y-2">
+ <li class="flex items-start gap-2"><i class="fa-solid fa-check text-skymint text-xs mt-1"></i> Deliver work aligned with specifications, schedules, and budgets.</li>
+ <li class="flex items-start gap-2"><i class="fa-solid fa-check text-skymint text-xs mt-1"></i> Maintain rigorous focus on safety and customer satisfaction.</li>
+ <li class="flex items-start gap-2"><i class="fa-solid fa-check text-skymint text-xs mt-1"></i> Promote responsible practices & environmental awareness.</li>
+ </ul>
+ </div>
+ </div>
+
+ <!-- Values -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover flex flex-col justify-between">
+ <div>
+ <div class="w-16 h-16 rounded-2xl bg-softlilac/15 border border-softlilac/40 flex items-center justify-center text-softlilac mb-6 tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <polygon points="50,15 85,35 85,75 50,95 15,75 15,35" stroke="#E8DEFF" stroke-width="2" class="tech-ring-spin"/>
+ <path d="M50 25 L73 38 L73 68 L50 82 L27 68 L27 38 Z" stroke="#F0DCA5" stroke-width="1.5"/>
+ <circle cx="50" cy="50" r="8" fill="#E8DEFF" class="tech-node-pulse"/>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-4">Core Values</h3>
+ <div class="grid grid-cols-2 gap-3 text-xs font-mono">
+ <div class="p-2.5 rounded-lg bg-white/5 border border-white/10 text-gold flex items-center gap-2">
+ <i class="fa-solid fa-shield-halved"></i> Integrity
+ </div>
+ <div class="p-2.5 rounded-lg bg-white/5 border border-white/10 text-skymint flex items-center gap-2">
+ <i class="fa-solid fa-award"></i> Quality
+ </div>
+ <div class="p-2.5 rounded-lg bg-white/5 border border-white/10 text-softlilac flex items-center gap-2">
+ <i class="fa-solid fa-hard-hat"></i> Safety
+ </div>
+ <div class="p-2.5 rounded-lg bg-white/5 border border-white/10 text-platinum flex items-center gap-2">
+ <i class="fa-solid fa-handshake"></i> Partnership
+ </div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Leadership Statement Card -->
+ <div class="glass-panel rounded-3xl p-8 sm:p-12 border border-gold/30 bg-gradient-to-br from-obsidian via-glassDark to-obsidian">
+ <div class="flex flex-col md:flex-row gap-8 items-center">
+ <div class="w-24 h-24 rounded-2xl bg-gradient-to-tr from-gold to-skymint p-1 shrink-0 shadow-glass-gold">
+ <div class="w-full h-full rounded-2xl bg-obsidian flex items-center justify-center text-3xl font-display font-bold text-gold">
+ KP
+ </div>
+ </div>
+ <div>
+ <i class="fa-solid fa-quote-left text-3xl text-gold/30 mb-2 block"></i>
+ <p class="text-base sm:text-lg text-platinum italic leading-relaxed mb-4">
+ "The group is led with a focus on industrial contracting, maintenance services, business coordination and the development of long-term client relationships."
+ </p>
+ <div class="font-display font-bold text-white text-lg">Kumar Prakash</div>
+ <div class="text-xs font-mono text-gold">Director • AL SABIHA Group of Companies</div>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- GROUP COMPANIES SECTION -->
+ <section id="companies" class="py-24 relative z-10 border-t border-white/10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="text-center max-w-3xl mx-auto mb-16">
+ <span class="text-xs font-mono uppercase tracking-widest text-skymint mb-2 block">Corporate Structure</span>
+ <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">All Seven Group Companies</h2>
+ <p class="text-slatuted text-sm sm:text-base">Distinct legal entities operating seamlessly under unified corporate leadership across the United Arab Emirates.</p>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="companiesContainer">
+ <!-- Dynamically Populated -->
+ </div>
+ </div>
+ </section>
+
+ <!-- SERVICES SHOWCASE SECTION -->
+ <section id="services" class="py-24 relative z-10 border-t border-white/10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="text-center max-w-3xl mx-auto mb-16">
+ <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">Technical Capabilities</span>
+ <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Immersive Service Portfolio</h2>
+ <p class="text-slatuted text-sm sm:text-base">Subject to relevant company approved activities, technical approvals, project contracts, and applicable UAE regulations.</p>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+ <!-- Electromechanical Works -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover border border-gold/30">
+ <div class="w-16 h-16 rounded-2xl bg-gold/15 text-gold flex items-center justify-center mb-6 tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <circle cx="50" cy="50" r="38" stroke="#F0DCA5" stroke-width="2" stroke-dasharray="8 4" class="tech-ring-spin"/>
+ <path d="M50 20 L58 35 L75 35 L62 46 L67 63 L50 52 L33 63 L38 46 L25 35 L42 35 Z" stroke="#B8F7E4" stroke-width="2" fill="none"/>
+ <circle cx="50" cy="50" r="8" fill="#F0DCA5" class="tech-node-pulse"/>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-3">Electromechanical Works</h3>
+ <ul class="text-slatuted text-xs space-y-2.5 mb-6">
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-gold"></i> Electrical & mechanical installation support</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-gold"></i> Electromechanical equipment installation</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-gold"></i> Industrial maintenance support</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-gold"></i> Technical coordination & site support</li>
+ </ul>
+ </div>
+
+ <!-- Mechanical Contracting -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover border border-skymint/30">
+ <div class="w-16 h-16 rounded-2xl bg-skymint/15 text-skymint flex items-center justify-center mb-6 tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <rect x="20" y="20" width="60" height="60" rx="10" stroke="#B8F7E4" stroke-width="2" stroke-dasharray="10 5" class="tech-ring-reverse"/>
+ <circle cx="50" cy="50" r="18" stroke="#F0DCA5" stroke-width="2.5"/>
+ <path d="M35 50 L65 50 M50 35 L50 65" stroke="#E8DEFF" stroke-width="2"/>
+ <circle cx="50" cy="50" r="5" fill="#B8F7E4" class="tech-node-pulse"/>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-3">Mechanical Contracting</h3>
+ <ul class="text-slatuted text-xs space-y-2.5 mb-6">
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-skymint"></i> Mechanical contracting support</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-skymint"></i> Industrial equipment & utility maintenance</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-skymint"></i> Technical inspections & maintenance assistance</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-skymint"></i> Project-related technical support</li>
+ </ul>
+ </div>
+
+ <!-- Electrical Engineering -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover border border-softlilac/30">
+ <div class="w-16 h-16 rounded-2xl bg-softlilac/15 text-softlilac flex items-center justify-center mb-6 tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <polygon points="50,10 90,85 10,85" stroke="#E8DEFF" stroke-width="2" stroke-dasharray="6 4" class="tech-ring-spin"/>
+ <path d="M52 25 L35 55 L52 55 L45 80 L70 45 L52 45 Z" fill="#F0DCA5" stroke="#B8F7E4" stroke-width="1.5"/>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-3">Electrical Engineering</h3>
+ <ul class="text-slatuted text-xs space-y-2.5 mb-6">
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-softlilac"></i> Authorized electrical installation works</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-softlilac"></i> Power distribution & installation support</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-softlilac"></i> Electrical maintenance assistance</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-softlilac"></i> Site electrical activity coordination</li>
+ </ul>
+ </div>
+
+ <!-- HVAC Systems -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover border border-gold/30">
+ <div class="w-16 h-16 rounded-2xl bg-gold/15 text-gold flex items-center justify-center mb-6 tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <circle cx="50" cy="50" r="38" stroke="#F0DCA5" stroke-width="2"/>
+ <path d="M50 20 C65 30 65 40 50 50 C35 60 35 70 50 80" stroke="#B8F7E4" stroke-width="2.5" class="tech-laser-scan"/>
+ <path d="M20 50 C30 35 40 35 50 50 C60 65 70 65 80 50" stroke="#E8DEFF" stroke-width="2.5" class="tech-laser-scan"/>
+ <circle cx="50" cy="50" r="6" fill="#F0DCA5"/>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-3">HVAC & Utility Systems</h3>
+ <ul class="text-slatuted text-xs space-y-2.5 mb-6">
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-gold"></i> HVAC installation & maintenance support</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-gold"></i> Ventilation & cooling system services</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-gold"></i> Mechanical utility support</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-gold"></i> Maintenance coordination</li>
+ </ul>
+ </div>
+
+ <!-- Fire Fighting Systems -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover border border-skymint/30">
+ <div class="w-16 h-16 rounded-2xl bg-skymint/15 text-skymint flex items-center justify-center mb-6 tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <circle cx="50" cy="50" r="38" stroke="#B8F7E4" stroke-width="2" class="tech-ring-reverse"/>
+ <path d="M50 18 Q65 40 65 60 A15 15 0 0 1 35 60 Q35 40 50 18 Z" stroke="#F0DCA5" stroke-width="2" fill="rgba(240, 220, 165, 0.2)"/>
+ <circle cx="50" cy="62" r="5" fill="#B8F7E4" class="tech-node-pulse"/>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-3">Fire Fighting Systems</h3>
+ <ul class="text-slatuted text-xs space-y-2.5 mb-6">
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-skymint"></i> Installation & maintenance support</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-skymint"></i> Coordination with authorized specialists</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-skymint"></i> Compliance with applicable approvals</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-skymint"></i> Maintenance in line with requirements</li>
+ </ul>
+ </div>
+
+ <!-- Cleaning Services -->
+ <div class="glass-panel p-8 rounded-2xl glass-panel-hover border border-softlilac/30">
+ <div class="w-16 h-16 rounded-2xl bg-softlilac/15 text-softlilac flex items-center justify-center mb-6 tech-3d-icon-box">
+ <svg class="w-10 h-10" viewBox="0 0 100 100" fill="none">
+ <circle cx="50" cy="50" r="38" stroke="#E8DEFF" stroke-width="2" stroke-dasharray="12 6" class="tech-ring-spin"/>
+ <path d="M30 70 L70 30 M70 30 L60 20 M70 30 L80 40" stroke="#B8F7E4" stroke-width="3" stroke-linecap="round"/>
+ <circle cx="35" cy="35" r="4" fill="#F0DCA5" class="tech-node-pulse"/>
+ <circle cx="65" cy="65" r="5" fill="#E8DEFF" class="tech-node-pulse"/>
+ </svg>
+ </div>
+ <h3 class="font-display text-xl font-bold text-white mb-3">Cleaning & Facility Support</h3>
+ <ul class="text-slatuted text-xs space-y-2.5 mb-6">
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-softlilac"></i> Commercial & industrial cleaning</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-softlilac"></i> Facility cleaning support & routine care</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-softlilac"></i> Office & operational premises cleaning</li>
+ <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-softlilac"></i> Client-specific service scheduling</li>
+ </ul>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- PROJECTS & EXPERIENCE SECTION -->
+ <section id="projects" class="py-24 relative z-10 border-t border-white/10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+ <div>
+ <span class="text-xs font-mono uppercase tracking-widest text-skymint mb-2 block">Track Record</span>
+ <h2 class="font-display text-3xl sm:text-5xl font-bold text-white">Project References</h2>
+ </div>
+
+ <!-- Category Filters -->
+ <div class="flex flex-wrap gap-2 mt-6 md:mt-0" id="projectFilters">
+ <button data-filter="all" class="px-4 py-2 rounded-xl text-xs font-mono bg-gold text-obsidian font-bold transition-all filter-btn">All (18)</button>
+ <button data-filter="hfz" class="px-4 py-2 rounded-xl text-xs font-mono glass-panel text-white/80 hover:text-gold transition-all filter-btn">Hamriyah Free Zone</button>
+ <button data-filter="abudhabi" class="px-4 py-2 rounded-xl text-xs font-mono glass-panel text-white/80 hover:text-gold transition-all filter-btn">Abu Dhabi</button>
+ <button data-filter="dubai" class="px-4 py-2 rounded-xl text-xs font-mono glass-panel text-white/80 hover:text-gold transition-all filter-btn">Dubai / Other</button>
+ </div>
+ </div>
+
+ <!-- Project Execution Approach -->
+ <div class="grid grid-cols-2 md:grid-cols-5 gap-3 mb-12 text-center">
+ <div class="glass-panel p-3 rounded-xl border border-gold/20 text-xs font-mono text-gold"><span class="block text-lg font-bold">01</span> Understand</div>
+ <div class="glass-panel p-3 rounded-xl border border-skymint/20 text-xs font-mono text-skymint"><span class="block text-lg font-bold">02</span> Plan</div>
+ <div class="glass-panel p-3 rounded-xl border border-softlilac/20 text-xs font-mono text-softlilac"><span class="block text-lg font-bold">03</span> Execute</div>
+ <div class="glass-panel p-3 rounded-xl border border-platinum/20 text-xs font-mono text-platinum"><span class="block text-lg font-bold">04</span> Review</div>
+ <div class="glass-panel p-3 rounded-xl border border-gold/20 text-xs font-mono text-gold col-span-2 md:col-span-1"><span class="block text-lg font-bold">05</span> Support</div>
+ </div>
+
+ <!-- Projects Grid (18 Supplied References) -->
+ <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projectsGrid">
+ <!-- Dynamic via JS -->
+ </div>
+ </div>
+ </section>
+
+ <!-- INDUSTRIES SERVED SECTION -->
+ <section id="industries" class="py-24 relative z-10 border-t border-white/10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="text-center max-w-3xl mx-auto mb-16">
+ <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">Sector Focus</span>
+ <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Industries We Serve</h2>
+ <p class="text-slatuted text-sm sm:text-base">Targeted technical solutions delivered across diverse commercial and heavy industrial operational sectors.</p>
+ </div>
+
+ <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+ <div class="glass-panel p-6 rounded-2xl border border-white/10 text-center glass-panel-hover">
+ <i class="fa-solid fa-industry text-3xl text-gold mb-3"></i>
+ <h4 class="font-bold text-white text-sm">Manufacturing & Plants</h4>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10 text-center glass-panel-hover">
+ <i class="fa-solid fa-cubes text-3xl text-skymint mb-3"></i>
+ <h4 class="font-bold text-white text-sm">Steel & Metal Processing</h4>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10 text-center glass-panel-hover">
+ <i class="fa-solid fa-building-user text-3xl text-softlilac mb-3"></i>
+ <h4 class="font-bold text-white text-sm">Commercial Buildings</h4>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10 text-center glass-panel-hover">
+ <i class="fa-solid fa-warehouse text-3xl text-platinum mb-3"></i>
+ <h4 class="font-bold text-white text-sm">Warehousing & Logistics</h4>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10 text-center glass-panel-hover">
+ <i class="fa-solid fa-ship text-3xl text-skymint mb-3"></i>
+ <h4 class="font-bold text-white text-sm">Marine & Support Ports</h4>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10 text-center glass-panel-hover">
+ <i class="fa-solid fa-helmet-safety text-3xl text-gold mb-3"></i>
+ <h4 class="font-bold text-white text-sm">Engineering Contracting</h4>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10 text-center glass-panel-hover">
+ <i class="fa-solid fa-building text-3xl text-softlilac mb-3"></i>
+ <h4 class="font-bold text-white text-sm">Offices & Operational Premises</h4>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10 text-center glass-panel-hover">
+ <i class="fa-solid fa-broom-ball text-3xl text-platinum mb-3"></i>
+ <h4 class="font-bold text-white text-sm">Facility Cleaning Requirements</h4>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- PROJECT DETAIL MODAL -->
+ <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-obsidian/80 backdrop-blur-md">
+ <div class="glass-panel max-w-lg w-full rounded-3xl p-8 border border-gold/40 relative shadow-2xl">
+ <button id="closeModalBtn" onclick="closeProjectModal()" class="absolute top-6 right-6 w-10 h-10 rounded-full glass-panel flex items-center justify-center text-gold hover:text-white transition-colors">
+ <i class="fa-solid fa-xmark text-lg"></i>
+ </button>
+ <div id="modalContent"></div>
+ </div>
+ </div>
+
+ <!-- QUALITY, HEALTH, SAFETY & ENVIRONMENT (QHSE) -->
+ <section id="qhse" class="py-24 relative z-10 border-t border-white/10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+ <div class="lg:col-span-5">
+ <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">QHSE Framework</span>
+ <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-6">Quality, Health, Safety & Environmental Commitment</h2>
+ <p class="text-slatuted text-sm leading-relaxed mb-6">
+ AL SABIHA Group operates with rigorous adherence to workmanship standards, agreed procedures, and safe working practices across all site activities.
+ </p>
+
+ <div class="p-6 rounded-2xl glass-panel border border-gold/40 mb-6 bg-gold/5">
+ <div class="flex items-center gap-4">
+ <div class="w-14 h-14 rounded-xl bg-gold/20 border border-gold flex items-center justify-center text-gold text-2xl shrink-0">
+ <i class="fa-solid fa-certificate"></i>
+ </div>
+ <div>
+ <h4 class="font-display font-bold text-white text-lg">ISO 14001:2015 Certification Reference</h4>
+ <p class="text-xs text-slatuted mt-1">Corporate credential supplied by the group. Official validity and scope subject to certificate confirmation.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6">
+ <div class="glass-panel p-6 rounded-2xl border border-white/10">
+ <i class="fa-solid fa-shield-virus text-2xl text-skymint mb-4"></i>
+ <h4 class="font-bold text-white mb-2">Quality Commitment</h4>
+ <p class="text-xs text-slatuted leading-relaxed">Adherence to strict quality control, verified material standards, and precision execution on every assignment.</p>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10">
+ <i class="fa-solid fa-user-shield text-2xl text-gold mb-4"></i>
+ <h4 class="font-bold text-white mb-2">Health & Safety</h4>
+ <p class="text-xs text-slatuted leading-relaxed">Prioritizing personnel safety, hazard identification, protective equipment, and zero-accident target environments.</p>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10">
+ <i class="fa-solid fa-leaf text-2xl text-skymint mb-4"></i>
+ <h4 class="font-bold text-white mb-2">Environmental Responsibility</h4>
+ <p class="text-xs text-slatuted leading-relaxed">Responsible resource utilization, active waste awareness, and environmentally conscious site housekeeping.</p>
+ </div>
+ <div class="glass-panel p-6 rounded-2xl border border-white/10">
+ <i class="fa-solid fa-arrows-spin text-2xl text-softlilac mb-4"></i>
+ <h4 class="font-bold text-white mb-2">Continuous Improvement</h4>
+ <p class="text-xs text-slatuted leading-relaxed">Regular procedure reviews, workforce training, and operational refinement to exceed client expectations.</p>
+ </div>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- WHY WORK WITH AL SABIHA -->
+ <section id="whyus" class="py-24 relative z-10 border-t border-white/10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="text-center max-w-3xl mx-auto mb-16">
+ <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">Competitive Advantage</span>
+ <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-4">Why Work With AL SABIHA?</h2>
+ </div>
+
+ <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+ <div class="glass-panel p-8 rounded-2xl border border-gold/20">
+ <div class="w-10 h-10 rounded-lg bg-gold/10 text-gold flex items-center justify-center font-bold font-mono mb-4">01</div>
+ <h3 class="font-bold text-white text-lg mb-2">Multi-Disciplinary Capabilities</h3>
+ <p class="text-xs text-slatuted leading-relaxed">Full-spectrum electromechanical, contracting, maintenance, and facility cleaning capabilities under one group.</p>
+ </div>
+ <div class="glass-panel p-8 rounded-2xl border border-skymint/20">
+ <div class="w-10 h-10 rounded-lg bg-skymint/10 text-skymint flex items-center justify-center font-bold font-mono mb-4">02</div>
+ <h3 class="font-bold text-white text-lg mb-2">Established UAE Business Presence</h3>
+ <p class="text-xs text-slatuted leading-relaxed">Active presence across Sharjah (HFZ), Ajman, Ras Al Khaimah, Abu Dhabi, and Dubai jurisdictions.</p>
+ </div>
+ <div class="glass-panel p-8 rounded-2xl border border-softlilac/20">
+ <div class="w-10 h-10 rounded-lg bg-softlilac/10 text-softlilac flex items-center justify-center font-bold font-mono mb-4">03</div>
+ <h3 class="font-bold text-white text-lg mb-2">Practical Project Support</h3>
+ <p class="text-xs text-slatuted leading-relaxed">Direct, hands-on field coordination and adaptable execution tailored to industrial site demands.</p>
+ </div>
+ <div class="glass-panel p-8 rounded-2xl border border-softlilac/20">
+ <div class="w-10 h-10 rounded-lg bg-softlilac/10 text-softlilac flex items-center justify-center font-bold font-mono mb-4">04</div>
+ <h3 class="font-bold text-white text-lg mb-2">Client-Focused Service</h3>
+ <p class="text-xs text-slatuted leading-relaxed">Transparent communication, realistic scheduling, and reliable execution focused on long-term client retention.</p>
+ </div>
+ <div class="glass-panel p-8 rounded-2xl border border-gold/20">
+ <div class="w-10 h-10 rounded-lg bg-gold/10 text-gold flex items-center justify-center font-bold font-mono mb-4">05</div>
+ <h3 class="font-bold text-white text-lg mb-2">Quality & Safety Awareness</h3>
+ <p class="text-xs text-slatuted leading-relaxed">Strict safety protocols and adherence to ISO quality and environmental standards across operations.</p>
+ </div>
+ <div class="glass-panel p-8 rounded-2xl border border-skymint/20">
+ <div class="w-10 h-10 rounded-lg bg-skymint/10 text-skymint flex items-center justify-center font-bold font-mono mb-4">06</div>
+ <h3 class="font-bold text-white text-lg mb-2">Long-Term Partnerships</h3>
+ <p class="text-xs text-slatuted leading-relaxed">Building sustainable, repeatable business relationships with leading UAE industrial and commercial partners.</p>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- CONTACT SECTION -->
+ <section id="contact" class="py-24 relative z-10 border-t border-white/10">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+ <!-- Info Column -->
+ <div class="lg:col-span-5">
+ <span class="text-xs font-mono uppercase tracking-widest text-gold mb-2 block">Get In Touch</span>
+ <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-6">Let's Discuss Your Requirements</h2>
+ <p class="text-slatuted text-sm mb-8">Reach out to our technical team for enquiries, quotations, or project collaborations across the UAE.</p>
+
+ <div class="space-y-6 text-sm">
+ <div class="flex items-start gap-4">
+ <div class="w-10 h-10 rounded-xl glass-panel text-gold flex items-center justify-center shrink-0 border border-gold/30">
+ <i class="fa-solid fa-phone"></i>
+ </div>
+ <div>
+ <div class="text-xs text-slatuted">Telephone & Mobile</div>
+ <div class="font-semibold text-white">+971 7 235 5087</div>
+ <div class="text-xs text-gold font-mono">+971 52 984 3100</div>
+ </div>
+ </div>
+
+ <div class="flex items-start gap-4">
+ <div class="w-10 h-10 rounded-xl glass-panel text-skymint flex items-center justify-center shrink-0 border border-skymint/30">
+ <i class="fa-solid fa-envelope"></i>
+ </div>
+ <div>
+ <div class="text-xs text-slatuted">Email Enquiries</div>
+ <div class="text-white">sabiha14064@gmail.com</div>
+ <div class="text-xs text-skymint font-mono">sales@alsabihagroup.com | hr@alsabihagroup.com</div>
+ </div>
+ </div>
+
+ <div class="flex items-start gap-4">
+ <div class="w-10 h-10 rounded-xl glass-panel text-softlilac flex items-center justify-center shrink-0 border border-softlilac/30">
+ <i class="fa-solid fa-location-dot"></i>
+ </div>
+ <div>
+ <div class="text-xs text-slatuted">Correspondence Address</div>
+ <div class="text-white text-xs leading-relaxed">Flat / Apartment No. 105, Al Nakheel 2, near Emirates Petrol Pump, Ajman, United Arab Emirates</div>
+ </div>
+ </div>
+
+ <div class="flex items-start gap-4">
+ <div class="w-10 h-10 rounded-xl glass-panel text-platinum flex items-center justify-center shrink-0 border border-white/20">
+ <i class="fa-solid fa-mailbox"></i>
+ </div>
+ <div>
+ <div class="text-xs text-slatuted">Postal Address</div>
+ <div class="text-white text-xs">P.O. Box 33592, Ras Al Khaimah, UAE</div>
+ </div>
+ </div>
+ </div>
+ </div>
+
+ <!-- Form Column -->
+ <div class="lg:col-span-7">
+ <form id="contactForm" class="glass-panel p-8 sm:p-10 rounded-3xl border border-gold/30 space-y-6">
+ <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+ <div>
+ <label class="block text-xs font-mono text-gold mb-2">Full Name *</label>
+ <input type="text" required id="formName" class="w-full px-4 py-3 rounded-xl glass-panel border border-white/10 text-white focus:border-gold focus:outline-none transition-colors text-sm" placeholder="John Doe">
+ </div>
+ <div>
+ <label class="block text-xs font-mono text-gold mb-2">Company Name</label>
+ <input type="text" id="formCompany" class="w-full px-4 py-3 rounded-xl glass-panel border border-white/10 text-white focus:border-gold focus:outline-none transition-colors text-sm" placeholder="Your Enterprise">
+ </div>
+ </div>
+
+ <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+ <div>
+ <label class="block text-xs font-mono text-gold mb-2">Email Address *</label>
+ <input type="email" required id="formEmail" class="w-full px-4 py-3 rounded-xl glass-panel border border-white/10 text-white focus:border-gold focus:outline-none transition-colors text-sm" placeholder="john@example.com">
+ </div>
+ <div>
+ <label class="block text-xs font-mono text-gold mb-2">Contact Number *</label>
+ <input type="tel" required id="formPhone" class="w-full px-4 py-3 rounded-xl glass-panel border border-white/10 text-white focus:border-gold focus:outline-none transition-colors text-sm" placeholder="+971 50 000 0000">
+ </div>
+ </div>
+
+ <div>
+ <label class="block text-xs font-mono text-gold mb-2">Service Required *</label>
+ <select id="formService" required class="w-full px-4 py-3 rounded-xl glass-panel border border-white/10 text-white bg-obsidian focus:border-gold focus:outline-none transition-colors text-sm">
+ <option value="">Select Primary Service</option>
+ <option value="Electromechanical Works">Electromechanical Works</option>
+ <option value="Mechanical Contracting">Mechanical Contracting Support</option>
+ <option value="Electrical Support">Electrical Engineering Support</option>
+ <option value="HVAC Systems">HVAC & Utility Systems</option>
+ <option value="Fire Fighting">Fire Fighting Maintenance Support</option>
+ <option value="Cleaning Services">Cleaning & Facility Services</option>
+ </select>
+ </div>
+
+ <div>
+ <label class="block text-xs font-mono text-gold mb-2">Message / Scope Overview *</label>
+ <textarea id="formMessage" required rows="4" class="w-full px-4 py-3 rounded-xl glass-panel border border-white/10 text-white focus:border-gold focus:outline-none transition-colors text-sm" placeholder="Briefly describe your project or maintenance requirements..."></textarea>
+ </div>
+
+ <button type="submit" id="submitBtn" class="w-full py-4 rounded-xl bg-gradient-to-r from-gold via-gold/90 to-gold/70 text-obsidian font-bold text-sm tracking-wide shadow-glow-gold hover:scale-[1.01] transition-all duration-300 flex items-center justify-center gap-3">
+ <i class="fa-solid fa-paper-plane"></i>
+ <span>Send Enquiry</span>
+ </button>
+
+ <div id="formFeedback" class="hidden p-4 rounded-xl text-center text-xs font-mono"></div>
+ </form>
+ </div>
+ </div>
+ </div>
+ </section>
+
+ <!-- FOOTER -->
+ <footer class="border-t border-white/10 bg-obsidian py-12 relative z-10 text-slatuted text-xs">
+ <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+ <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+ <div class="md:col-span-1">
+ <div class="flex items-center gap-3 mb-4">
+ <div class="w-8 h-8 rounded-lg bg-gold/20 border border-gold flex items-center justify-center text-gold font-bold">AS</div>
+ <span class="font-display font-bold text-white text-base">AL SABIHA GROUP</span>
+ </div>
+ <p class="text-xs leading-relaxed mb-4">Engineering, Electromechanical Works, Technical Services, Contracting, Cleaning Services. Est. 2019 • UAE.</p>
+ </div>
+
+ <div>
+ <h5 class="font-mono text-gold uppercase tracking-wider mb-3 text-xs">Navigation</h5>
+ <ul class="space-y-2">
+ <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+ <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+ <li><a href="#companies" class="hover:text-white transition-colors">Group Companies</a></li>
+ <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
+ </ul>
+ </div>
+
+ <div>
+ <h5 class="font-mono text-gold uppercase tracking-wider mb-3 text-xs">Solutions</h5>
+ <ul class="space-y-2">
+ <li><a href="#projects" class="hover:text-white transition-colors">Project Portfolio</a></li>
+ <li><a href="#industries" class="hover:text-white transition-colors">Industries Served</a></li>
+ <li><a href="#qhse" class="hover:text-white transition-colors">QHSE & ISO 14001</a></li>
+ <li><a href="#contact" class="hover:text-white transition-colors">Contact Support</a></li>
+ </ul>
+ </div>
+
+ <div>
+ <h5 class="font-mono text-gold uppercase tracking-wider mb-3 text-xs">Verification Notice</h5>
+ <p class="text-[11px] leading-relaxed text-slatuted">
+ Company names, licences, certifications, and project references are subject to verification against official documents. Registered HFZ entities displayed with associated local trade authorities.
+ </p>
+ </div>
+ </div>
+
+ <div class="border-t border-white/5 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+ <div>&copy; 2019-2026 AL SABIHA GROUP OF COMPANIES. All rights reserved.</div>
+ <div class="font-mono text-[10px] text-gold/70">UAE Business Registration • ISO 14001:2015 Framework</div>
+ </div>
+ </div>
+ </footer>
+
+ <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+ <script>
+ const groupCompanies = [
+ {
+ name: "Al Sabiha Electromechanical Works",
+ licence: "50430",
+ authority: "Ras Al Khaimah Municipality",
+ issued: "20 March 2019",
+ registration: "Hamriyah Free Zone, Sharjah",
+ color: "gold",
+ icon: "fa-bolt",
+ focus: "Electromechanical equipment installation and general engineering support."
+ },
+ {
+ name: "Al Sabiha Cleaning Services",
+ licence: "123916",
+ authority: "DED, Ajman Government",
+ issued: "1 May 2024",
+ registration: "Hamriyah Free Zone, Sharjah",
+ color: "skymint",
+ icon: "fa-broom",
+ focus: "Commercial, industrial and specialized facility cleaning solutions."
+ },
+ {
+ name: "Sahat Al Madina Electromechanical Equipment Installation & Maintenance SPS LLC",
+ licence: "121961",
+ authority: "DED, Ajman Government",
+ issued: "4 January 2024",
+ registration: "Hamriyah Free Zone, Sharjah",
+ color: "softlilac",
+ icon: "fa-gears",
+ focus: "Electromechanical equipment maintenance and technical support."
+ },
+ {
+ name: "Izzat Al Madina Cleaning Services",
+ licence: "128734",
+ authority: "DED, Ajman Government",
+ issued: "3 January 2025",
+ registration: "Hamriyah Free Zone, Sharjah",
+ color: "platinum",
+ icon: "fa-sparkles",
+ focus: "Routine premises and operational cleaning assistance."
+ },
+ {
+ name: "Safa Al Sama Mechanical Contracting",
+ licence: "914916",
+ authority: "Sharjah Authority (Pending Final Confirmation)",
+ issued: "31 December 2024",
+ registration: "Sharjah Mainland",
+ color: "gold",
+ icon: "fa-wrench",
+ focus: "Mechanical contracting support and equipment installation."
+ },
+ {
+ name: "Allail Alsari Technical Services",
+ licence: "1398936",
+ authority: "DED, Dubai",
+ issued: "8 July 2024",
+ registration: "Dubai Jurisdiction",
+ color: "skymint",
+ icon: "fa-screwdriver-wrench",
+ focus: "Technical maintenance, fitting and site coordination support."
+ },
+ {
+ name: "Diwakar Kumar Technical Services",
+ licence: "1636436",
+ authority: "DED, Dubai",
+ issued: "7 September 2026",
+ registration: "Dubai Jurisdiction",
+ color: "softlilac",
+ icon: "fa-headset",
+ focus: "Technical support services and maintenance assistance."
+ }
+ ];
+
+ const projectReferences = [
+ { id: 1, client: "Sea Lion General Contracting L.L.C.", location: "Plot No. 193, Abu Dhabi", cat: "abudhabi" },
+ { id: 2, client: "Magnum Technology Center FZE", location: "Hamriyah Free Zone, Phase 2", cat: "hfz" },
+ { id: 3, client: "ArcelorMittal DSTC FZE", location: "HJ-02, HJ-02A, HE-06 and HE-07, HFZ Phase 1", cat: "hfz" },
+ { id: 4, client: "Gulf Valve Casting Specialities FZE", location: "Hamriyah Free Zone, Phase 2", cat: "hfz" },
+ { id: 5, client: "Lamprell Energy Limited", location: "Hamriyah Free Zone, Phase 1", cat: "hfz" },
+ { id: 6, client: "Techshore Middle East FZE", location: "Hamriyah Free Zone, Phase 2", cat: "hfz" },
+ { id: 7, client: "Sealine Marine Services FZE", location: "Plots MB-23, MB-24, MB-25, HFZ Phase 2", cat: "hfz" },
+ { id: 8, client: "Midas Metal Industries", location: "Umm Al Quwain", cat: "dubai" },
+ { id: 9, client: "Stream Environment Protection Equipment Trading L.L.C.", location: "Abu Dhabi", cat: "abudhabi" },
+ { id: 10, client: "Runway Steel Contracting LLC", location: "Dubai", cat: "dubai" },
+ { id: 11, client: "ABS Engineering FZE", location: "Hamriyah Free Zone, Phase 2", cat: "hfz" },
+ { id: 12, client: "Planet Blue Energy FZE", location: "Hamriyah Free Zone, Phase 2", cat: "hfz" },
+ { id: 13, client: "Al Nawras Steel Middle East FZE", location: "Hamriyah Free Zone, Phase 1", cat: "hfz" },
+ { id: 14, client: "ULO System FZC", location: "Hamriyah Free Zone, Phase 1", cat: "hfz" },
+ { id: 15, client: "Arabian Gulf Steel Industries FZE", location: "Hamriyah Free Zone, Phase 1", cat: "hfz" },
+ { id: 16, client: "EMK Steel Constructions Contracting Co FZE", location: "UAE Industrial Zone", cat: "dubai" },
+ { id: 17, client: "Engineering Services International FZE", location: "Plots MRT-12 and MRT-13, HFZ Phase 2", cat: "hfz" },
+ { id: 18, client: "Tusker Engineering FZC", location: "4B-14, 4B-15 and 4B-16, HFZ Phase 1", cat: "hfz" }
+ ];
+
+ function renderCompanies() {
+ const container = document.getElementById('companiesContainer');
+ container.innerHTML = groupCompanies.map((c, i) => `
+ <div class="glass-panel rounded-2xl p-6 glass-panel-hover border border-white/10 flex flex-col justify-between">
+ <div>
+ <div class="flex items-center justify-between mb-4">
+ <span class="text-[10px] font-mono px-2.5 py-1 rounded-full bg-white/5 border border-white/10 text-gold">Entity #0${i+1}</span>
+ <div class="w-8 h-8 rounded-lg bg-${c.color}/10 text-${c.color} flex items-center justify-center">
+ <i class="fa-solid ${c.icon}"></i>
+ </div>
+ </div>
+ <h3 class="font-display font-bold text-base text-white mb-2 leading-snug">${c.name}</h3>
+ <p class="text-xs text-slatuted mb-4 leading-relaxed">${c.focus}</p>
+ </div>
+ <div class="space-y-1.5 pt-4 border-t border-white/5 text-[11px] font-mono">
+ <div class="flex justify-between text-slatuted"><span>Licence No:</span><span class="text-gold font-bold">${c.licence}</span></div>
+ <div class="flex justify-between text-slatuted"><span>Authority:</span><span class="text-white text-right">${c.authority}</span></div>
+ <div class="flex justify-between text-slatuted"><span>Issued:</span><span class="text-skymint">${c.issued}</span></div>
+ <div class="flex justify-between text-slatuted"><span>Reg Status:</span><span class="text-white/80">${c.registration}</span></div>
+ </div>
+ </div>
+ `).join('');
+ }
+
+ function renderProjects(filter = 'all') {
+ const grid = document.getElementById('projectsGrid');
+ const filtered = filter === 'all' ? projectReferences : projectReferences.filter(p => p.cat === filter);
+ grid.innerHTML = filtered.map(p => `
+ <div class="glass-panel p-6 rounded-2xl glass-panel-hover border border-white/10 flex flex-col justify-between group cursor-pointer" onclick="openProjectModal(${p.id})">
+ <div>
+ <div class="flex items-center justify-between mb-3">
+ <span class="text-[10px] font-mono text-gold/80">Ref #${p.id < 10 ? '0'+p.id : p.id}</span>
+ <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slatuted group-hover:text-gold transition-colors"></i>
+ </div>
+ <h4 class="font-bold text-white text-base mb-2 group-hover:text-gold transition-colors">${p.client}</h4>
+ <div class="flex items-center gap-2 text-xs text-slatuted"><i class="fa-solid fa-location-dot text-skymint text-[10px]"></i><span>${p.location}</span></div>
+ </div>
+ <div class="mt-6 pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slatuted">
+ <span>Project Status</span><span class="text-skymint font-semibold">Verified Reference</span>
+ </div>
+ </div>
+ `).join('');
+ }
+
+ document.querySelectorAll('.filter-btn').forEach(btn => {
+ btn.addEventListener('click', function() {
+ document.querySelectorAll('.filter-btn').forEach(b => {
+ b.classList.remove('bg-gold', 'text-obsidian', 'font-bold');
+ b.classList.add('glass-panel', 'text-white/80');
+ });
+ this.classList.remove('glass-panel', 'text-white/80');
+ this.classList.add('bg-gold', 'text-obsidian', 'font-bold');
+ renderProjects(this.getAttribute('data-filter'));
+ });
+ });
+
+ function openProjectModal(id) {
+ const p = projectReferences.find(item => item.id === id);
+ if(!p) return;
+ const modal = document.getElementById('projectModal');
+ const content = document.getElementById('modalContent');
+ content.innerHTML = `
+ <div class="text-xs font-mono text-gold mb-1">SELECTED PROJECT REFERENCE #${p.id}</div>
+ <h3 class="font-display font-bold text-2xl text-white mb-4">${p.client}</h3>
+ <div class="space-y-3 text-xs text-slatuted mb-6">
+ <div class="p-3 rounded-xl bg-white/5 border border-white/10"><span class="block text-[10px] uppercase font-mono text-skymint mb-1">Location / Site</span><span class="text-white font-medium">${p.location}</span></div>
+ </div>
+ <button onclick="closeProjectModal()" class="w-full py-3 rounded-xl bg-gold text-obsidian font-bold text-xs">Close Details</button>
+ `;
+ modal.classList.remove('hidden');
+ }
+
+ function closeProjectModal() {
+ document.getElementById('projectModal').classList.add('hidden');
+ }
+
+ function initGlobal3DBackground() {
+ const container = document.getElementById('global3DCanvas');
+ if(!container) return;
+
+ const scene = new THREE.Scene();
+ const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1000);
+ camera.position.z = 10;
+
+ const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+ renderer.setSize(window.innerWidth, window.innerHeight);
+ renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+ container.appendChild(renderer.domElement);
+
+ const sceneGroup = new THREE.Group();
+ const torusGeo = new THREE.TorusKnotGeometry(2.2, 0.45, 120, 18);
+ const torusMat = new THREE.MeshStandardMaterial({ color: 0xF0DCA5, metalness: 0.85, roughness: 0.18 });
+ const torusKnot = new THREE.Mesh(torusGeo, torusMat);
+ sceneGroup.add(torusKnot);
+
+ const ring1Geo = new THREE.TorusGeometry(4.2, 0.03, 16, 100);
+ const ring1Mat = new THREE.MeshBasicMaterial({ color: 0xB8F7E4, wireframe: true });
+ const ring1 = new THREE.Mesh(ring1Geo, ring1Mat);
+ ring1.rotation.x = Math.PI / 3;
+ sceneGroup.add(ring1);
+
+ const particlesCount = 700;
+ const posArray = new Float32Array(particlesCount * 3);
+ for(let i = 0; i < particlesCount * 3; i += 3) {
+ posArray[i] = (Math.random() - 0.5) * 30;
+ posArray[i+1] = (Math.random() - 0.5) * 30;
+ posArray[i+2] = (Math.random() - 0.5) * 30;
+ }
+ const particlesGeo = new THREE.BufferGeometry();
+ particlesGeo.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+ const particlesMat = new THREE.PointsMaterial({ size: 0.07, color: 0xF0DCA5, transparent: true, opacity: 0.65 });
+ const particleMesh = new THREE.Points(particlesGeo, particlesMat);
+ scene.add(particleMesh);
+ scene.add(sceneGroup);
+
+ const ambientLight = new THREE.AmbientLight(0xffffff, 0.9);
+ scene.add(ambientLight);
+
+ let mouseX = 0, mouseY = 0;
+ document.addEventListener('mousemove', (e) => {
+ mouseX = (e.clientX / window.innerWidth - 0.5) * 0.9;
+ mouseY = (e.clientY / window.innerHeight - 0.5) * 0.9;
+ });
+
+ let clock = new THREE.Clock();
+ function renderLoop() {
+ requestAnimationFrame(renderLoop);
+ const t = clock.getElapsedTime();
+ torusKnot.rotation.x = t * 0.2;
+ torusKnot.rotation.y = t * 0.3;
+ ring1.rotation.z = t * 0.35;
+ particleMesh.rotation.y = t * 0.04;
+ sceneGroup.rotation.y += (mouseX - sceneGroup.rotation.y) * 0.05;
+ sceneGroup.rotation.x += (mouseY - sceneGroup.rotation.x) * 0.05;
+ renderer.render(scene, camera);
+ }
+ renderLoop();
+
+ window.addEventListener('resize', () => {
+ camera.aspect = window.innerWidth / window.innerHeight;
+ camera.updateProjectionMatrix();
+ renderer.setSize(window.innerWidth, window.innerHeight);
+ });
+ }
+
+ document.getElementById('contactForm').addEventListener('submit', function(e) {
+ e.preventDefault();
+ const btn = document.getElementById('submitBtn');
+ const feedback = document.getElementById('formFeedback');
+ btn.disabled = true;
+ btn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Transmitting...`;
+ setTimeout(() => {
+ btn.disabled = false;
+ btn.innerHTML = `<i class="fa-solid fa-check"></i> Submitted Successfully`;
+ feedback.classList.remove('hidden');
+ feedback.classList.add('bg-skymint/20', 'text-skymint', 'border', 'border-skymint/40');
+ feedback.innerHTML = `Thank you! Your enquiry has been received.`;
+ this.reset();
+ }, 1200);
+ });
+
+ const menuBtn = document.getElementById('mobileMenuBtn');
+ const menu = document.getElementById('mobileMenu');
+ const menuIcon = document.getElementById('menuIcon');
+
+ menuBtn.addEventListener('click', () => {
+ menu.classList.toggle('hidden');
+ menuIcon.classList.toggle('fa-bars');
+ menuIcon.classList.toggle('fa-xmark');
+ });
+
+ window.onload = function() {
+ renderCompanies();
+ renderProjects();
+ initGlobal3DBackground();
+ };
+ </script>
+</body>
+</html>
